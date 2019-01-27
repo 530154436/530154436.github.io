@@ -478,7 +478,7 @@
 </ol>
 <h4 id="1-3-2-过拟合"><a href="#1-3-2-过拟合" class="headerlink" title="1.3.2 过拟合"></a>1.3.2 过拟合</h4><ol>
 <li><strong>过拟合</strong> (over-fitting)<br>学习时选择的模型所包含的参数过多（复杂度过高），以致于出现这一模型<strong>对已知数据预测得很好，但对未知数据预测得很差的现象</strong>。<br><center><img src="/imgs/c5623aea-e2fe-430e-b6c4-466992b5853c.png" alt="c5623aea-e2fe-430e-b6c4-466992b5853c.png"></center><h4 id="1-3-3-模型选择"><a href="#1-3-3-模型选择" class="headerlink" title="1.3.3 模型选择　　　"></a>1.3.3 模型选择　　　</h4><h5 id="1-3-3-1-正则化-regularization"><a href="#1-3-3-1-正则化-regularization" class="headerlink" title="1.3.3.1 正则化 ( regularization )"></a>1.3.3.1 <strong>正则化</strong> ( regularization )</h5>正则化是<strong>结构风险最小化</strong>策略的实现，是在经验风险上加一个<strong>正则化项</strong>或<strong>罚项</strong>。一般是模型复杂度的单调递增函数，模型越复杂，正则化值越大。<strong>作用</strong>是选择经验风险与模型复杂度同时较小的模型。正则化项的不同形式:</li>
-<li>$L_2$范数 (平方损失)<br> $$L(w) =  \frac 1 N \sum_{i=1}^N ( f(x_i; w) - y_i ) + \frac \lambda 2 || w ||_2^2$$<br> 其中，w 为参数向量，$|| w ||<em>2 = \sqrt { \sum</em>{i=1}^N w_i^2 }$</li>
+<li>$L_2$范数 (平方损失)<br> $$L(w) =  \frac 1 N \sum_{i=1}^N ( f(x_i; w) - y_i ) + \frac \lambda 2 || w ||_2^2$$<br> 其中，w 为参数向量，$|| w ||_2 = \sqrt { \sum_{i=1}^N w_i^2 }$</li>
 <li>$L_1$范数 (绝对值损失)<br> $$L(w) =  \frac 1 N \sum_{i=1}^N ( f(x_i; w) - y_i ) + \lambda || w ||_1$$<h5 id="1-3-3-2-交叉验证"><a href="#1-3-3-2-交叉验证" class="headerlink" title="1.3.3.2 交叉验证"></a>1.3.3.2 <strong>交叉验证</strong></h5>如果给定的样本数据充足，进行模型选择的一种简单方法是随机地将数据集切成三部分，分别为<strong>训练集</strong>、<strong>验证集</strong>（validation set）和<strong>测试集</strong>。训练集用来训练模型，<strong>验证集用于模型的选择</strong>，测试集用于最终对方法的评估。但是由于在许多实际应用中数据是不充分的，为了选择好的模型，可以采用交叉验证方法。</li>
 <li><strong>基本思想</strong><br>重复的使用数据，把给定的数据进行切分，将切分的数据集组合为训练集和测试集，在此基础上<strong>反复</strong>地进行训练、测试以及模型选择</li>
 <li>方法<ol>
