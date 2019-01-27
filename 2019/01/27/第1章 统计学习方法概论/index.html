@@ -90,7 +90,7 @@
 <meta property="og:image" content="http://yoursite.com/imgs/b1899845-abec-4ce9-81d7-809ac2883453.png">
 <meta property="og:image" content="http://yoursite.com/imgs/9040d393-d944-448f-a8c2-abe0c490675a.png">
 <meta property="og:image" content="http://yoursite.com/imgs/c5623aea-e2fe-430e-b6c4-466992b5853c.png">
-<meta property="og:updated_time" content="2019-01-27T07:09:10.377Z">
+<meta property="og:updated_time" content="2019-01-27T08:01:07.840Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第1章 统计学习方法概论">
 <meta name="twitter:description" content="1.1 统计学习方法1.1.1 监督学习 (supervised learning)利用训练数据集(输入\输出数据对）学习一个模型，再用模型对测试样本集进行预测。主要用于分类、标注、回归分析。  联合概率分布 监督问题的形式化 分类、标注、回归 对比 | 监督学习  | 输入变量| 输出变量| 应用 | |:—:| :—:|:—:| :—:| | 分类 | 离散或连续| 离散| 文本分类、客户类型">
@@ -448,32 +448,32 @@
 <h4 id="1-1-4-强化学习"><a href="#1-1-4-强化学习" class="headerlink" title="1.1.4 强化学习"></a>1.1.4 <strong>强化学习</strong></h4><p>学习者在学习过程中不断与环境交互，会从环境中得到一定的奖赏，根据奖赏再不断的学习，直到达到一个更优的策略。</p>
 <h4 id="1-1-5-实现统计学习方法的步骤"><a href="#1-1-5-实现统计学习方法的步骤" class="headerlink" title="1.1.5 实现统计学习方法的步骤"></a>1.1.5 <strong>实现统计学习方法的步骤</strong></h4><p>(1) 得到一个有限的训练数据集合；<br>(2) 确定包含所有可能的模型的假设空间，即学习<font color="#dd0000">模型</font>的集合；<br>(3) 确定模型选则的准则，即<font color="#dd0000">策略</font>；<br>(4) 实现求解最优模型的算法，即<font color="#dd0000">算法</font>；<br>(5) 选择最优的算法；<br>(6) 利用最优模型对新数据进行预测或分析。</p>
 <h3 id="1-2-统计学习三要素"><a href="#1-2-统计学习三要素" class="headerlink" title="1.2 统计学习三要素"></a>1.2 统计学习三要素</h3><h4 id="1-2-1-模型"><a href="#1-2-1-模型" class="headerlink" title="1.2.1 模型"></a>1.2.1 模型</h4><p>即所要学习的条件概率分布或决策函数</p>
-<h5 id="1-2-1-1-假设空间"><a href="#1-2-1-1-假设空间" class="headerlink" title="1.2.1.1 假设空间"></a>1.2.1.1 <strong>假设空间</strong></h5><p>包含所有可能的条件概率分布或决策函数，可以定义为决策函数的集合或条件概率分布族，即<br>$$ F = { f | Y = f(X)} 或 F = { P | P( Y|X ) }$$</p>
-<h5 id="1-2-1-2-参数空间"><a href="#1-2-1-2-参数空间" class="headerlink" title="1.2.1.2 参数空间"></a>1.2.1.2 <strong>参数空间</strong></h5><p>包含决策函数或条件概率分布模型中涉及的所有参数向量<br>$$ F = { f | Y = f_\theta (X)，\theta \in R^n } 或 F = { P | P_\theta ( Y|X )，\theta \in R^n }$$</p>
+<h5 id="1-2-1-1-假设空间"><a href="#1-2-1-1-假设空间" class="headerlink" title="1.2.1.1 假设空间"></a>1.2.1.1 <strong>假设空间</strong></h5><p>包含所有可能的条件概率分布或决策函数，可以定义为决策函数的集合或条件概率分布族，即<br>$$ F = \{ f | Y = f(X)\} 或 F = \{ P | P( Y|X ) \}$$</p>
+<h5 id="1-2-1-2-参数空间"><a href="#1-2-1-2-参数空间" class="headerlink" title="1.2.1.2 参数空间"></a>1.2.1.2 <strong>参数空间</strong></h5><p>包含决策函数或条件概率分布模型中涉及的所有参数向量<br>$$ F = \{ f | Y = f_\theta (X)，\theta \in R^n \} 或 F = \{ P | P_\theta ( Y|X )，\theta \in R^n \}$$</p>
 <h4 id="1-2-2-策略"><a href="#1-2-2-策略" class="headerlink" title="1.2.2 策略"></a>1.2.2 策略</h4><h5 id="1-2-2-1-损失函数与风险函数"><a href="#1-2-2-1-损失函数与风险函数" class="headerlink" title="1.2.2.1 损失函数与风险函数"></a>1.2.2.1 损失函数与风险函数</h5><ol>
 <li><strong>损失函数</strong>（loss function）或<strong>代价函数</strong>（cost function）<br>对于给定的输入x，由模型f(X)给出相应的输出，但是预测的输出f(x)与真实值Y可能存在不一致，用一个损失函数或者代价函数来<strong>度量预测错误的程度</strong>。损失函数L(Y,f(X))是预测值f(X)和真实值Y的<strong>非负实值函数</strong>。<strong>损失函数值越小，模型就越好</strong>。常见的损失函数：<ol>
-<li>0-1损失函数<br>$$ L(Y, f(X)) = \begin{cases} 1 &amp;  Y \neq f(x) \  0  &amp;Y=f(X) \end{cases}$$</li>
+<li>0-1损失函数<br>$$ L(Y, f(X)) = \begin{cases} 1 &amp;  Y \neq f(x) \\  0  &amp;Y=f(X) \end{cases}$$</li>
 <li><strong>平方损失函数</strong><br>$$ L(Y,f(X)) = (Y-f(X))^2 $$</li>
 <li>绝对损失函数<br>$$ L(Y,f(X)) = |Y-f(X)| $$</li>
 <li>对数损失函数( logarithmic loss function )或对数似然损失函数<br>$$ L(Y,f(X)) = -logP(Y|X) $$</li>
 </ol>
 </li>
 <li><strong>风险函数</strong>( risk function ) 或 <strong>期望损失</strong> ( expected loss )<br>模型$f(x)$关于<strong>联合分布</strong>$P(X, Y) $的平均意义下的损失:<br>$$ R_{exp} = E_P[ L( Y, f(X)) ] = \int_{X \cdot Y} L( Y, f(X)) P(X, Y) dxdy $$</li>
-<li><strong>经验风险</strong> (empirical risk)<br>模型$f(X)$关于<strong>训练数据集</strong>的平均损失，根据<strong>大数定律</strong>，当样本容量N趋于无穷时，经验风险趋于期望风险，所以可以用<strong>经验风险估计期望风险</strong>。<br>$$ R_{emp} = \frac 1 N \sum_{i=1}^N L(y_i,f(x_i))$$<br>其中，$ T={ (x_1, y_1),(x_2, y_2) \cdots (x_N, y_N) } $ 为训练集</li>
+<li><strong>经验风险</strong> (empirical risk)<br>模型$f(X)$关于<strong>训练数据集</strong>的平均损失，根据<strong>大数定律</strong>，当样本容量N趋于无穷时，经验风险趋于期望风险，所以可以用<strong>经验风险估计期望风险</strong>。<br>$$ R_{emp} = \frac 1 N \sum_{i=1}^N L(y_i,f(x_i))$$<br>其中，$ T=\{ (x_1, y_1),(x_2, y_2) \cdots (x_N, y_N) \} $ 为训练集</li>
 </ol>
 <h5 id="1-2-2-2-经验风险最小化和结构风险最小化"><a href="#1-2-2-2-经验风险最小化和结构风险最小化" class="headerlink" title="1.2.2.2 经验风险最小化和结构风险最小化"></a>1.2.2.2 经验风险最小化和结构风险最小化</h5><ol>
-<li><strong>经验风险最小化</strong>（Empirical Risk Minimization，ERM）<br>ERM的策略认为经验风险最小的模型是最优的模型 $\to$ <strong>极大似然估计</strong>（某些条件下），即<br>$$ min  { R_{emp}  }$$<ol>
+<li><strong>经验风险最小化</strong>（Empirical Risk Minimization，ERM）<br>ERM的策略认为经验风险最小的模型是最优的模型 $\to$ <strong>极大似然估计</strong>（某些条件下），即<br>$$ min  \{ R_{emp}  \}$$<ol>
 <li>当样本容量足够大时，经验风险最小化能保证有很好的学习效果</li>
 <li>当样本容量很小时，经验风险最小化学习的效果未必很好，甚至会产生“<strong>过拟合</strong>”问题</li>
 </ol>
 </li>
-<li><strong>结构风险最小化</strong>（structural risk minimization，SRM）<br>为了<strong>防止过拟合</strong>而提出的策略，结构风险在经验风险上加上表示模型复杂度的正则化项（regularization）或罚项（penalty term）。SRM策略认为结构风险最小的模型就是最优模型 $\to$ 贝叶斯估计中的<strong>最大后验概率估计</strong>。<br>$$ min { R_{emp}  + \lambda J(f)  }$$<br>其中，$J(f)$ 为模型的复杂度，$f \in F$</li>
+<li><strong>结构风险最小化</strong>（structural risk minimization，SRM）<br>为了<strong>防止过拟合</strong>而提出的策略，结构风险在经验风险上加上表示模型复杂度的正则化项（regularization）或罚项（penalty term）。SRM策略认为结构风险最小的模型就是最优模型 $\to$ 贝叶斯估计中的<strong>最大后验概率估计</strong>。<br>$$ min \{ R_{emp}  + \lambda J(f)  \}$$<br>其中，$J(f)$ 为模型的复杂度，$f \in F$</li>
 </ol>
 <h4 id="1-2-2-算法"><a href="#1-2-2-算法" class="headerlink" title="1.2.2 算法"></a>1.2.2 算法</h4><p>$\to$ 经验风险或结构风险<strong>最优化问题</strong></p>
 <h3 id="1-3-模型评估与模型选择"><a href="#1-3-模型评估与模型选择" class="headerlink" title="1.3 模型评估与模型选择"></a>1.3 模型评估与模型选择</h3><h4 id="1-3-1-训练误差与测试误差"><a href="#1-3-1-训练误差与测试误差" class="headerlink" title="1.3.1 训练误差与测试误差　　　　"></a>1.3.1 训练误差与测试误差　　　　</h4><ol>
 <li><strong>训练误差</strong><br>模型关于<strong>训练数据集</strong>的平均损失（经验风险）<br>$$ R_{emp} (\hat f) = \frac 1 N \sum_{i=1}^N L(y_i,\hat f(x_i))$$</li>
 <li><strong>测试误差</strong><br>模型关于<strong>测试数据集</strong>的平均损失（经验风险）<br>$$ e_{test}= \frac 1 {N^{‘}} \sum_{i=1}^{N^{‘}} L(y_i,\hat f(x_i))$$</li>
-<li>误差率 (error rate)<br>$$ e_{test}= \frac 1 {N^{‘}} \sum_{i=1}^{N^{‘}} I(y_i \neq \hat f(x_i))$$<br>其中，$I$ 为指示函数( indicator function )，$ I = \begin{cases} 1 &amp;  y \neq  \hat f(x) \  0  &amp; y= \hat f(x) \end{cases}$</li>
+<li>误差率 (error rate)<br>$$ e_{test}= \frac 1 {N^{‘}} \sum_{i=1}^{N^{‘}} I(y_i \neq \hat f(x_i))$$<br>其中，$I$ 为指示函数( indicator function )，$ I = \begin{cases} 1 &amp;  y \neq  \hat f(x) \\  0  &amp; y= \hat f(x) \end{cases}$</li>
 <li>准确率 (accracy rate)<br>$$ r_{test}= \frac 1 {N^{‘}} \sum_{i=1}^{N^{‘}} I(y_i = \hat f(x_i))$$</li>
 </ol>
 <h4 id="1-3-2-过拟合"><a href="#1-3-2-过拟合" class="headerlink" title="1.3.2 过拟合"></a>1.3.2 过拟合</h4><ol>
@@ -1377,7 +1377,7 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 
